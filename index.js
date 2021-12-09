@@ -29,14 +29,16 @@ client.once('ready', () => {
 
 // Handle DM On the bot for Giving question
 client.on("messageCreate", async (message) => {
-    if (message.author.bot || (message.author.id != QUESTION_PROVIDER_ID && message.channel.type === 'DM')) return;
+    if (message.author.bot) return;
 
     try {
         if (message.channel.type === 'DM') {
-            await submitQuestion(client, message);
+            if (message.content.startsWith('!a'))
+                return await submitAnswer(client, message);
+            if (message.content.startsWith('!question') && message.author.id == QUESTION_PROVIDER_ID)
+                return await submitQuestion(client, message);
         } else if (message.channelId === TARGET_CHANNEL_ID) {
-            if(!message.content.startsWith('!answer')) return message.delete();
-            await submitAnswer(client, message);
+            return message.delete();
         }
     } catch (error) {
         console.log(error);
@@ -56,7 +58,7 @@ client.on('interactionCreate', async interaction => {
     const command = client.commands.get(interaction.commandName);
     if (!command) return;
     interaction.guild.members.cache.get();
-    
+
     try {
         await command.execute(interaction);
     } catch (error) {

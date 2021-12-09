@@ -7,7 +7,7 @@ const serviceAccount = {
   "type": "service_account",
   "project_id": "the-quiz-programmer",
   "private_key_id": FIREBASE_PRIVATE_KEY_ID,
-  "private_key": JSON.parse(FIREBASE_PRIVATE_KEY),
+  "private_key": FIREBASE_PRIVATE_KEY,
   "client_email": FIREBASE_CLIENT_EMAIL,
   "client_id": FIREBASE_CLIENT_ID,
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
