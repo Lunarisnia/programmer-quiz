@@ -10,7 +10,7 @@ module.exports = {
         const topUsers = await getTopUsers();
         let leaderBoard = '======TOP 10 PLAYERS======\n'
         for (let [index, topUser] of topUsers.entries()) {
-            leaderBoard += `${index + 1}. ${interaction.guild.members.cache.get(topUser.id).displayName} : ${topUser.point} Poin\n`
+            leaderBoard += `${index + 1}. ${topUser.name} : ${topUser.point} Poin\n`
         }
 		return interaction.reply(leaderBoard);
 	},

@@ -10,9 +10,10 @@ const getTopUsers = async () => {
     return docs;
 }
 
-const addNewUser = async (authorId, point, answeredQuestionId) => {
+const addNewUser = async (authorId, point, answeredQuestionId, displayName) => {
     const userData = {
         id: authorId,
+        name: displayName,
         point: point,
         answeredQuestionIds: [],
     }
@@ -26,9 +27,10 @@ const getOneUser = async (userId) => {
     return raw.data();
 }
 
-const updateUserData = async (authorId, point, answeredQuestionId) => {
+const updateUserData = async (authorId, point, answeredQuestionId, displayName) => {
     const userData = await getOneUser(authorId);
     
+    userData.name = displayName;
     userData.point += point;
     userData.answeredQuestionIds.push(answeredQuestionId);
     await firestoreDb.collection('users').doc(authorId.toString()).set(userData);

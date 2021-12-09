@@ -27,8 +27,8 @@ module.exports = async (client, message) => {
     
     if (joinedAnswer === question.answer) {
         if(isUserExist)
-            await updateUserData(authorId, question.point, questionId);
-        else await addNewUser(authorId, question.point, questionId);
+            await updateUserData(authorId, question.point, questionId, message.author.username);
+        else await addNewUser(authorId, question.point, questionId, message.author.username);
 
         await client.channels.cache.get(TARGET_CHANNEL_ID).send(`<@${authorId}> Telah Menjawab Quiz ID: ${questionId} dengan benar! Anda dapat ${question.point} poin`);
     } else {
