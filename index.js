@@ -6,7 +6,6 @@ const { BOT_TOKEN, TARGET_CHANNEL_ID, QUESTION_PROVIDER_ID, GUILD_ID } = process
 const path = require('path');
 const fs = require('fs');
 const submitQuestion = require('./src/services/addingQuestions/submitQuestion');
-const { channel } = require('diagnostics_channel');
 const submitAnswer = require('./src/services/answerings/submitAnswer');
 
 // Create a new client instance
@@ -57,7 +56,6 @@ client.on('interactionCreate', async interaction => {
     // Check if the command typed actually has a logic
     const command = client.commands.get(interaction.commandName);
     if (!command) return;
-    interaction.guild.members.cache.get();
 
     try {
         await command.execute(interaction);
