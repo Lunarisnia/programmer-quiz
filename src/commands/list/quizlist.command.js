@@ -17,7 +17,6 @@ module.exports = {
             list += `\`QUIZ ID: ${id}\`\t: ${status}\n`;
         }
         await interaction.user.send(list);
-        await interaction.reply('Ok');
-		await interaction.deleteReply();
+        return interaction.reply(`<@${interaction.user.id}> DM Sent!`);
 	},
 };
