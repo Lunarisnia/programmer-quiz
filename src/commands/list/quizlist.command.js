@@ -12,12 +12,12 @@ module.exports = {
         const allQuizId = (await getAllQuestion()).map(doc => doc.id);
         let list = '=====QUESTION ID LIST=====\n';
 
-        for (let [index, id] of allQuizId.entries()) {
+        for (let id of allQuizId) {
             const status = userData.answeredQuestionIds.includes(id) ? `✅` : `❌`; 
             list += `\`QUIZ ID: ${id}\`\t: ${status}\n`;
         }
         await interaction.user.send(list);
         await interaction.reply('Ok');
-		return interaction.deleteReply();
+		await interaction.deleteReply();
 	},
 };
