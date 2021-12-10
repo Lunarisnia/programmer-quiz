@@ -12,10 +12,9 @@ module.exports = {
         const allQuizId = (await getAllQuestion()).map(doc => doc.id);
         let list = '=====QUESTION ID LIST=====\n';
 
-        for (let [index, id] of allQuizId) {
-            if(userData.includes(id)) {
-                list += `${index + 1}. \`ID: ${id}\`\n`
-            }
+        for (let [index, id] of allQuizId.entries()) {
+            const status = userData.answeredQuestionIds.includes(id) ? `✅` : `❌`; 
+            list += `\`QUIZ ID: ${id}\`\t: ${status}\n`;
         }
         await interaction.user.send(list);
         await interaction.reply('Ok');

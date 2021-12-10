@@ -3,7 +3,7 @@ const { firestoreDb } = require("../../configs/firebase");
 
 // Fetch all question on the database
 const getAllQuestion = async () => {
-    const raw = await firestoreDb.collection('questions').orderBy('id', 'desc').get();
+    const raw = await firestoreDb.collection('questions').orderBy('id', 'asc').get();
     const docs = raw.docs.map(doc => doc.data());
 
     return docs;
