@@ -16,7 +16,6 @@ module.exports = {
             const status = userData.answeredQuestionIds.includes(id) ? `✅` : `❌`; 
             list += `\`QUIZ ID: ${id}\`\t: ${status}\n`;
         }
-        await interaction.user.send(list);
-        return interaction.reply(`<@${interaction.user.id}> DM Sent!`);
+        return interaction.user.send(list);
 	},
 };
